@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.NimapInfotech.Nimap.CategoryEntity.Category;
 import com.NimapInfotech.Nimap.CategoryRepo.CategoryRepository;
 import com.NimapInfotech.Nimap.Exception.ResourceNotFoundException;
 import com.NimapInfotech.Nimap.ProductDto.ProductSer;
@@ -61,7 +60,18 @@ public class ProductController {
 	public ResponseEntity<Product> DeleteProduct(@RequestBody Product product,@PathVariable("ProductId") int id) {
 		Product productexist = productrepositroy.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Product Not Found with Id: "+id));
+		System.out.println(productexist);
 	    productrepositroy.delete(productexist);
 	    return ResponseEntity.ok().build();
+	}
+	
+	
+	
+	
+	
+	
+	@GetMapping("/product")
+	public List<Product> getProduct(){
+		return (List<Product>)productrepositroy.findAll();
 	}
 }

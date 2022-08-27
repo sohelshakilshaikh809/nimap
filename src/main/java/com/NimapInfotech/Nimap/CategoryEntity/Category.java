@@ -8,13 +8,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.NimapInfotech.Nimap.ProductEntity.Product;
 
 @Entity
-@Table( name = "category")
+//@Table( name = "category")
 public class Category {
 
 	@Id
@@ -23,7 +24,14 @@ public class Category {
 	private String CategoryName;
 	private String CategoryDescription;
 	
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "category",fetch = FetchType.LAZY)
+//    @OneToMany(cascade = CascadeType.ALL)
+//	@JoinColumn(name="category_id", referencedColumnName = "categoryId")
+//    private List<Product> products;
+    
+    
+    @OneToMany(cascade = CascadeType.ALL)
+//    ,mappedBy = "category",fetch = FetchType.LAZY)//2//
+    @JoinColumn(name="category_id",referencedColumnName = "categoryId")
 	private List<Product> products;
 
 	public int getCategoryId() {
@@ -65,4 +73,10 @@ public class Category {
 		CategoryDescription = categoryDescription;
 		this.products = products;
 	}
-}
+
+	public Category() {
+		super();
+	}
+	
+    
+	}

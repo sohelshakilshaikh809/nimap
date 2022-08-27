@@ -1,5 +1,7 @@
 package com.NimapInfotech.Nimap.CateController;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -60,5 +62,17 @@ public class CategoryController {
 				.orElseThrow(() -> new ResourceNotFoundException("Product Not Found with Id: "+id));
 	    categoryrepositroy.delete(categoryexist);
 	    return ResponseEntity.ok().build();
-	} 
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	@GetMapping("/category")
+	public List<Category> getCategory(){
+		return (List<Category>)categoryrepositroy.findAll();
+	}
 }

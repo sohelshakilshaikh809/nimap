@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 import com.NimapInfotech.Nimap.CategoryEntity.Category;
 @Entity
-@Table(name = "products")
+//@Table(name = "products")
 public class Product {
 
 	@Id
@@ -21,47 +21,41 @@ public class Product {
 	private long ProductPrice;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
-	
+//	@ManyToOne
 	@JoinColumn(name="category_id")
 	private Category category;
-
+	
+	
+	
 	public int getProductId() {
 		return ProductId;
 	}
-
 	public void setProductId(int productId) {
 		ProductId = productId;
 	}
-
 	public String getProductName() {
 		return ProductName;
 	}
-
 	public void setProductName(String productName) {
 		ProductName = productName;
 	}
-
 	public long getProductPrice() {
 		return ProductPrice;
 	}
-
 	public void setProductPrice(long productPrice) {
 		ProductPrice = productPrice;
 	}
-
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
-	public Product(int productId, String productName, long productPrice, Category category) {
+	
+	public Product(int productId, String productName, long productPrice) {
 		super();
 		ProductId = productId;
 		ProductName = productName;
 		ProductPrice = productPrice;
-		this.category = category;
 	}
+	
+	public Product() {
+		super();
+	}
+	
+    	
 }
